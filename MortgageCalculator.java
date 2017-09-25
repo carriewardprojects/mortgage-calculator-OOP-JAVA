@@ -1,7 +1,7 @@
 /*
  * Carrie Ward
  * 09/20/2017
- * Version 1.0
+ * Version 1.2
  * A java program that calculates a mortgage rate using OOP techniques.
  */
 
@@ -14,6 +14,7 @@ public class MortgageCalculator {
         private double rate = 2.0;  // interst rate
         private double term = 3.0;  // length of term (in years)
         
+        // default constructor
         public MortgageCalculator()
         {
             
@@ -58,12 +59,16 @@ public class MortgageCalculator {
         
         public double monthlyPayment( double loan, double rate, double term )
         {
+            // interest rate divided by 100 gives the prcentage rate
+            // interest rate divided by 12 gives the monthly rate
+            // term mutiplied by 12 gives the number of months per term
             double payment = (loan * ((rate / 100.0) /12.0)) / (1.0 - Math.pow((((rate / 100.0) / 12.0) + 1.0), -(term * 12.0)));
             return payment;
         }
    
         public String toString()
         {            
+            // utilize the NumberFormat class to display the dolar amounts of the loan
             NumberFormat input = NumberFormat.getCurrencyInstance();
             return "Loan amount: " + input.format(loan) + "\nMonthly interest rate: " + rate + "%\nTerm: " + (int)term + " years"
             + "\nThe monthly mortgage payment is: " + input.format(monthlyPayment( loan, rate, term )) + "\n";
@@ -73,8 +78,7 @@ public class MortgageCalculator {
         {
             System.out.println(this);
         }
-    
-    
+   
     public static void main(String[] args){
         
         double loan, rate, term;
@@ -119,15 +123,8 @@ public class MortgageCalculator {
         }
         
         // create objects to test the program
-        // constructor
-        System.out.println("\nTEST #1: ");
         MortgageCalculator calc1 = new MortgageCalculator( loan, rate, term );
         calc1.display();
-        
-        // constructor
-        System.out.println("\nTEST #2: ");
-        MortgageCalculator calc2 = new MortgageCalculator( 200000.0, 5.75, 30.0 );
-        calc2.display();
         
         System.out.println( "\n" );
         
